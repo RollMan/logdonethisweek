@@ -50,6 +50,13 @@ if len(donethisweek_list) != 1:
 
 donethisweek_list = donethisweek_list[0]
 
-for card in donethisweek_list.list_cards():
-    print("[{}]({})".format(card.name, card.url))
+log = ""
 
+for card in donethisweek_list.list_cards():
+    log += "[{}]({})\n".format(card.name, card.url)
+
+with open("log.txt", "a") as f:
+    from datetime import date
+    today = date.today()
+    f.write("{}\n".format(today.strftime("%d/%m/%Y")))
+    f.write(log)
